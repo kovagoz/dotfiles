@@ -1,0 +1,28 @@
+[user]
+    email = kovago@gmail.com
+    name = Zoltan Kovago
+[core]
+    editor = vim
+    whitespace = -trailing-space
+[color]
+    diff = always
+    branch = always
+    status = always
+[grep]
+    lineNumber = true
+[alias]
+    st = status
+    tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    ci = commit
+    co = checkout
+    br = branch
+    hi = log --pretty=oneline
+    df = difftool
+    local  = "!f () { git log origin/master..master --abbrev-commit --pretty=format:'%h%x00%ar%x00%s' $@ | gawk -F '\\0' '{ printf \"\\033[33m%s\\033[0m \\033[30;1m%-14s\\033[0m  %s\\n\", $1, $2, $3 }'; }; f"
+    blog = "!f () { git log $(git merge-base HEAD master)..HEAD --abbrev-commit --pretty=format:'%h%x00%ar%x00%s' $@ | gawk -F '\\0' '{ printf \"\\033[33m%s\\033[0m \\033[30;1m%-14s\\033[0m  %s\\n\", $1, $2, $3 }'; }; f"
+    bstat = "diff --name-only master.."
+    bdiff = "!f () { git diff master.. -- $1; }; f"
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
