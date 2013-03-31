@@ -1,8 +1,12 @@
 #!/bin/sh
 
-ln -s vim ~/.vim
-ln -s tmux.conf ~/.tmux.conf
-ln -s gitconfig ~/.gitconfig
-ln -s zshrc ~/.zshrc
+DIR="$(cd "$( dirname "$0" )" && pwd)"
 
-echo "source $PWD/vimrc" > ~/.vimrc
+ln -s $DIR/vim ~/.vim
+ln -s $DIR/tmux.conf ~/.tmux.conf
+ln -s $DIR/gitconfig ~/.gitconfig
+ln -s $DIR/zshrc ~/.zshrc
+
+echo "source $DIR/vimrc" > ~/.vimrc
+
+vim +BundleInstall +qall

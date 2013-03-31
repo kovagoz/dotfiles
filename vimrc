@@ -43,7 +43,7 @@ Bundle 'L9'
 Bundle 'matchit.zip'
 
 Bundle 'altercation/vim-colors-solarized.git'
-colorscheme solarized
+silent! colorscheme solarized
 
 Bundle 'scrooloose/nerdtree.git'
 nnoremap <Leader>o :NERDTreeToggle<CR>
