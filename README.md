@@ -1,5 +1,4 @@
-Install
-=======
+## Install
 
 ```
 git clone --recursive https://github.com/kovagoz/dotfiles.git .dotfiles
