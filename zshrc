@@ -25,3 +25,5 @@ PS1='%{%f%}%{%F{white}%}%~${vcs_info_msg_0_} $%{%f%} '
 eval `dircolors $DIR/dircolors-solarized/dircolors.256dark`
 
 alias ls='ls --color=always'
+alias ll='ls -l'
+alias la='ls -a'
