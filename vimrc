@@ -21,6 +21,7 @@ set autowrite "Save on buffer switch
 set undolevels=100
 set hidden
 set mouse=a
+set cm=blowfish
 
 "-------------------------------------------------
 "  Load plugins by vundle
@@ -62,9 +63,10 @@ let g:easytags_auto_highlight = 0
 
 Bundle 'joonty/vim-phpqa.git'
 let g:phpqa_messdetector_autorun = 0
-let g:phpqa_codesniffer_autorun = 0
 let g:phpqa_messdetector_ruleset = "~/.vim/phpmd.xml"
+let g:phpqa_codesniffer_autorun = 0
 let g:phpqa_codesniffer_args = "--standard=PSR2"
+let g:phpqa_codecoverage_autorun = 0
 nnoremap <Leader>cs :Phpcs<CR>:lfirst<CR>
 nnoremap <Leader>md :Phpmd<CR>:lfirst<CR>
 
@@ -102,6 +104,7 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_phpcs_disable = 1
+let g:syntastic_mode_map = {'mode': 'passive'}
 set statusline+=%{SyntasticStatuslineFlag()}
 
 Bundle 'joonty/vdebug.git'
