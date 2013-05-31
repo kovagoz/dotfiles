@@ -16,14 +16,23 @@ autoload -U colors && colors
 zstyle ':vcs_info:git*' unstagedstr "?"
 zstyle ':vcs_info:git*' stagedstr "!"
 zstyle ':vcs_info:git*' check-for-changes false
-zstyle ':vcs_info:git*' formats " %{$fg[grey]%}(%b%c%u)%{$reset_color%}"
+zstyle ':vcs_info:git*' formats " %{$fg[yellow]%}(%b%c%u)%{$reset_color%}"
 precmd() {
     vcs_info
 }
 
+VIMODE="[i]"
+
+function zle-keymap-select {
+    VIMODE="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
+    zle reset-prompt
+}
+
+zle -N zle-keymap-select
+
 setopt prompt_subst
 
-PS1='%{%f%}%{%F{white}%}%~${vcs_info_msg_0_} $%{%f%} '
+PS1='%{%f%}%{%F{white}%}%~${vcs_info_msg_0_} ${VIMODE} $%{%f%} '
 
 eval `dircolors ~/.dotfiles/dircolors/dircolors.256dark`
 
