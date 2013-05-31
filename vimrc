@@ -13,7 +13,6 @@ set shiftwidth=4
 set encoding=utf8
 set ruler
 set incsearch
-set hlsearch
 set ignorecase
 set backspace=start,indent,eol
 set noswapfile
@@ -46,6 +45,7 @@ Bundle 'matchit.zip'
 Bundle 'altercation/vim-colors-solarized.git'
 silent! colorscheme solarized
 hi Folded cterm=None
+hi SignColumn ctermbg=Black
 
 Bundle 'scrooloose/nerdtree.git'
 nnoremap <Leader>o :NERDTreeToggle<CR>
@@ -110,6 +110,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 
 Bundle 'joonty/vdebug.git'
 let g:vdebug_options = { 'break_on_open' : 0 }
+let g:vdebug_options = { 'port' : 9001 }
 nmap <Leader>bp <F10>
 
 filetype plugin indent on
