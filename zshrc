@@ -33,6 +33,7 @@ zle -N zle-keymap-select
 setopt prompt_subst
 
 PS1='%{%f%}%{%F{white}%}%~${vcs_info_msg_0_} ${VIMODE} $%{%f%} '
+RPROMPT=%m
 
 eval `dircolors ~/.dotfiles/dircolors/dircolors.256dark`
 
