@@ -11,6 +11,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set encoding=utf8
+set nohlsearch
 set ruler
 set incsearch
 set ignorecase
@@ -59,8 +60,8 @@ Bundle 'tomtom/tcomment_vim.git'
 nmap <Leader>cc gcc
 vmap <Leader>cc gc
 
-Bundle 'xolox/vim-easytags.git'
-let g:easytags_auto_highlight = 0
+" Bundle 'xolox/vim-easytags.git'
+" let g:easytags_auto_highlight = 0
 
 Bundle 'joonty/vim-phpqa.git'
 let g:phpqa_messdetector_autorun = 0
@@ -89,14 +90,15 @@ Bundle 'kovagoz/vim-fuzzyfinder'
 nnoremap <Leader>/ :FufBufferTag<CR>
 nnoremap <Leader>j :FufTag<CR>
 nnoremap <Leader>f :FufFile<CR>
+nnoremap <C-b> :FufBuffer<CR>
 
-Bundle 'minibufexpl.vim'
-let g:miniBufExplMoreThanOne = 1
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 0
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 30
-let g:miniBufExplSplitBelow = 1
+" Bundle 'minibufexpl.vim'
+" let g:miniBufExplMoreThanOne = 1
+" let g:miniBufExplModSelTarget = 0
+" let g:miniBufExplUseSingleClick = 1
+" let g:miniBufExplMapWindowNavVim = 1
+" let g:miniBufExplVSplit = 30
+" let g:miniBufExplSplitBelow = 1
 noremap <silent> <Left>  :bNext<CR>
 noremap <silent> <Right> :bnext<CR>
 
@@ -109,8 +111,8 @@ let g:syntastic_mode_map = {'mode': 'passive'}
 set statusline+=%{SyntasticStatuslineFlag()}
 
 Bundle 'joonty/vdebug.git'
-let g:vdebug_options = { 'break_on_open' : 0 }
-let g:vdebug_options = { 'port' : 9001 }
+"let g:vdebug_options = { 'break_on_open': 0, 'port': 9001 }
+let g:vdebug_options = { 'break_on_open': 0, 'port': 9001, 'server': '192.168.1.23', 'debug_file': '/tmp/vdebug.log' }
 nmap <Leader>bp <F10>
 
 filetype plugin indent on
