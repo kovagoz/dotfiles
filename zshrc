@@ -47,3 +47,5 @@ alias dev="ln -sf $SSH_AUTH_SOCK ~/.ssh/auth_sock; tmux attach"
 export PYTHONPATH=~/lib/python2.7/site-packages
 
 path+=(~/bin)
+
+source $HOME/.dotfiles/zsh-fuzzy-match/fuzzy-match.zsh
