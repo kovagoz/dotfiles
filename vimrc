@@ -22,6 +22,7 @@ set undolevels=100
 set hidden
 set mouse=a
 set cm=blowfish
+set wildignore+=vendor/**
 
 "-------------------------------------------------
 "  Load plugins by vundle
@@ -42,6 +43,10 @@ Bundle 'airblade/vim-gitgutter.git'
 Bundle 'kovagoz/vim-autocomplpop'
 Bundle 'L9'
 Bundle 'matchit.zip'
+
+Bundle 'wincent/Command-T.git'
+let g:CommandTMatchWindowAtTop = 1
+nnoremap <C-t> :CommandT<CR>
 
 Bundle 'altercation/vim-colors-solarized.git'
 silent! colorscheme solarized
