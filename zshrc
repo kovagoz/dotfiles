@@ -49,3 +49,31 @@ export PYTHONPATH=~/lib/python2.7/site-packages
 path+=(~/bin)
 
 source $HOME/.dotfiles/zsh-fuzzy-match/fuzzy-match.zsh
+
+# Git aliases
+
+alias st='git status'
+compdef _git st=git-status
+
+alias ci='git commit'
+compdef _git ci=git-commit
+
+alias co='git checkout'
+compdef _git co=git-checkout
+
+alias br='git branch'
+compdef _git br=git-branch
+
+alias pull='git pull'
+compdef _git pull=git-pull
+
+alias push='git push'
+compdef _git push=git-push
+
+alias merge='git merge'
+compdef _git merge=git-merge
+
+alias rebase'git rebase'
+compdef _git rebase=git-rebase
+
+alias hi='git hi'
