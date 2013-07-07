@@ -42,6 +42,15 @@ Bundle 'kovagoz/vim-autocomplpop'
 Bundle 'L9'
 Bundle 'matchit.zip'
 
+Bundle 'kien/ctrlp.vim.git'
+let g:ctrlp_match_window = 'top,order:ttb,min:1,max:20'
+let g:ctrlp_map = '<c-f>'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ }
+nnoremap <c-b> :CtrlPBuffer<CR>
+nnoremap <c-t> :CtrlPBufTag<CR>
+
 Bundle 'altercation/vim-colors-solarized.git'
 silent! colorscheme solarized
 hi Folded cterm=None
@@ -58,9 +67,6 @@ nnoremap <leader>gs :Gstatus<CR><C-w>20+
 Bundle 'tomtom/tcomment_vim.git'
 nmap <Leader>cc gcc
 vmap <Leader>cc gc
-
-Bundle 'xolox/vim-easytags.git'
-let g:easytags_auto_highlight = 0
 
 Bundle 'joonty/vim-phpqa.git'
 let g:phpqa_messdetector_autorun = 0
@@ -90,16 +96,6 @@ nnoremap <Leader>/ :FufBufferTag<CR>
 nnoremap <Leader>j :FufTag<CR>
 nnoremap <Leader>f :FufFile<CR>
 
-Bundle 'minibufexpl.vim'
-let g:miniBufExplMoreThanOne = 1
-let g:miniBufExplModSelTarget = 0
-let g:miniBufExplUseSingleClick = 0
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 30
-let g:miniBufExplSplitBelow = 1
-noremap <silent> <Left>  :bNext<CR>
-noremap <silent> <Right> :bnext<CR>
-
 Bundle 'scrooloose/syntastic.git'
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_jump = 1
@@ -118,6 +114,10 @@ filetype plugin indent on
 "-------------------------------------------------
 "  Custom shortcuts
 "-------------------------------------------------
+
+" switch between buffers
+noremap <silent> <Left>  :bNext<CR>
+noremap <silent> <Right> :bnext<CR>
 
 " Run PHP from Vim
 autocmd FileType php noremap <C-M> :w!<CR>:!clear;/usr/bin/php %:p<CR>
