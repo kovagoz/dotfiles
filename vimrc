@@ -41,6 +41,7 @@ Bundle 'airblade/vim-gitgutter.git'
 Bundle 'kovagoz/vim-autocomplpop'
 Bundle 'L9'
 Bundle 'matchit.zip'
+Bundle 'xsbeats/vim-blade.git'
 
 Bundle 'kien/ctrlp.vim.git'
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:20'
@@ -90,11 +91,6 @@ vnoremap ae :Align =<CR>
 
 Bundle 'kwbdi.vim'
 map <Leader>x <Plug>Kwbd
-
-Bundle 'kovagoz/vim-fuzzyfinder'
-nnoremap <Leader>/ :FufBufferTag<CR>
-nnoremap <Leader>j :FufTag<CR>
-nnoremap <Leader>f :FufFile<CR>
 
 Bundle 'scrooloose/syntastic.git'
 let g:syntastic_enable_signs = 1
