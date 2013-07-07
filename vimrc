@@ -43,6 +43,9 @@ Bundle 'L9'
 Bundle 'matchit.zip'
 Bundle 'xsbeats/vim-blade.git'
 
+Bundle 'oceandeep'
+silent! colorscheme oceandeep
+
 Bundle 'kien/ctrlp.vim.git'
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:20'
 let g:ctrlp_map = '<c-f>'
@@ -52,8 +55,8 @@ let g:ctrlp_custom_ignore = {
 nnoremap <c-b> :CtrlPBuffer<CR>
 nnoremap <c-t> :CtrlPBufTag<CR>
 
-Bundle 'altercation/vim-colors-solarized.git'
-silent! colorscheme solarized
+" Bundle 'altercation/vim-colors-solarized.git'
+" silent! colorscheme solarized
 hi Folded cterm=None
 hi SignColumn ctermbg=Black
 
