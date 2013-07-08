@@ -21,6 +21,7 @@ set undolevels=100
 set hidden
 set mouse=a
 set cm=blowfish
+set wildignore+=*/.git/*,*/vendor/*
 
 "-------------------------------------------------
 "  Load plugins by vundle
