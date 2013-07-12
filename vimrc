@@ -44,7 +44,7 @@ Bundle 'kovagoz/vim-autocomplpop'
 Bundle 'L9'
 Bundle 'matchit.zip'
 Bundle 'xsbeats/vim-blade.git'
-
+Bundle 'puppetlabs/puppet-syntax-vim.git'
 Bundle 'terryma/vim-multiple-cursors.git'
 
 Bundle 'sjl/badwolf.git'
@@ -71,6 +71,7 @@ Bundle 'tpope/vim-fugitive.git'
 let g:fugitive_git_executable = 'git -c color.status=false'
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR><C-w>20+
+nnoremap <leader>gc :Gcommit<CR>
 
 Bundle 'tomtom/tcomment_vim.git'
 nmap <Leader>cc gcc
