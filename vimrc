@@ -45,8 +45,10 @@ Bundle 'L9'
 Bundle 'matchit.zip'
 Bundle 'xsbeats/vim-blade.git'
 
-Bundle 'oceandeep'
-silent! colorscheme oceandeep
+Bundle 'terryma/vim-multiple-cursors.git'
+
+Bundle 'sjl/badwolf.git'
+silent! colorscheme badwolf
 
 Bundle 'kien/ctrlp.vim.git'
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:20'
@@ -60,7 +62,7 @@ nnoremap <c-t> :CtrlPBufTag<CR>
 " Bundle 'altercation/vim-colors-solarized.git'
 " silent! colorscheme solarized
 hi Folded cterm=None
-hi SignColumn ctermbg=Black
+" hi SignColumn ctermbg=Black
 
 Bundle 'scrooloose/nerdtree.git'
 nnoremap <Leader>o :NERDTreeToggle<CR>
@@ -105,10 +107,10 @@ let g:syntastic_phpcs_disable = 1
 let g:syntastic_mode_map = {'mode': 'passive'}
 set statusline+=%{SyntasticStatuslineFlag()}
 
-Bundle 'joonty/vdebug.git'
+" Bundle 'joonty/vdebug.git'
 "let g:vdebug_options = { 'break_on_open': 0, 'port': 9001 }
-let g:vdebug_options = { 'break_on_open': 0, 'port': 9001, 'server': '192.168.1.23', 'debug_file': '/tmp/vdebug.log' }
-nmap <Leader>bp <F10>
+" let g:vdebug_options = { 'break_on_open': 0, 'port': 9001, 'server': '192.168.1.23', 'debug_file': '/tmp/vdebug.log' }
+" nmap <Leader>bp <F10>
 
 filetype plugin indent on
 
