@@ -47,6 +47,10 @@ Bundle 'xsbeats/vim-blade.git'
 Bundle 'puppetlabs/puppet-syntax-vim.git'
 Bundle 'terryma/vim-multiple-cursors.git'
 
+Bundle 'chilicuil/vim-sprunge'
+nnoremap <Leader>y :Sprunge<CR>
+vnoremap <Leader>y :Sprunge<CR>
+
 Bundle 'sjl/badwolf.git'
 silent! colorscheme badwolf
 
@@ -184,9 +188,6 @@ vnoremap <Leader>rt :s/\t/    /g<CR>
 
 " PHP docblock generator
 au FileType php nmap <Leader>db :%!php ~/.vim/scripts/docblock.php<CR>
-
-" Send selected text to pastebin.com
-noremap <silent> <Leader>y :w !php ~/.vim/scripts/pastebin.php<CR>
 
 "------------------------------------------------------------------------------
 " Refactor PHP function
