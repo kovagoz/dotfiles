@@ -49,6 +49,13 @@ Bundle 'terryma/vim-multiple-cursors.git'
 Bundle 'Nibble'
 Bundle 'genutils'
 
+Bundle 'matze/vim-move.git'
+let g:move_map_keys = 0
+vmap <C-j> <Plug>MoveBlockDown
+vmap <C-k> <Plug>MoveBlockUp
+nmap <C-j> <Plug>MoveLineDown
+nmap <C-k> <Plug>MoveLineUp
+
 Bundle 'chilicuil/vim-sprunge'
 nnoremap <Leader>y :Sprunge<CR>
 vnoremap <Leader>y :Sprunge<CR>
