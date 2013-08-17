@@ -189,6 +189,9 @@ vnoremap <Leader>rt :s/\t/    /g<CR>
 " PHP docblock generator
 au FileType php nmap <Leader>db :%!php ~/.vim/scripts/docblock.php<CR>
 
+" Searching for TODO and FIXME tags
+nnoremap t :Ack! --ignore-dir=vendor 'TODO<bar>FIXME'<CR>
+
 "------------------------------------------------------------------------------
 " Refactor PHP function
 "------------------------------------------------------------------------------
