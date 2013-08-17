@@ -46,6 +46,8 @@ Bundle 'matchit.zip'
 Bundle 'xsbeats/vim-blade.git'
 Bundle 'puppetlabs/puppet-syntax-vim.git'
 Bundle 'terryma/vim-multiple-cursors.git'
+Bundle 'Nibble'
+Bundle 'genutils'
 
 Bundle 'chilicuil/vim-sprunge'
 nnoremap <Leader>y :Sprunge<CR>
