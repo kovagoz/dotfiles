@@ -1,5 +1,14 @@
 set nocompatible
 
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
 syntax on
 set t_Co=256
 set background=dark
@@ -23,6 +32,12 @@ set hidden
 set mouse=a
 set cm=blowfish
 set wildignore+=*/.git/*,*/vendor/*
+set clipboard=unnamedplus
+set listchars=tab:>-,trail:.,extends:>,precedes:<
+set list
+set laststatus=2
+
+let mapleader = ","
 
 "-------------------------------------------------
 "  Load plugins by vundle
@@ -35,9 +50,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-surround.git'
-Bundle 'mileszs/ack.vim.git'
-Bundle 'Lokaltog/vim-easymotion.git'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'DataWraith/auto_mkdir.git'
 Bundle 'airblade/vim-gitgutter.git'
 Bundle 'kovagoz/vim-autocomplpop'
@@ -46,6 +59,18 @@ Bundle 'matchit.zip'
 Bundle 'xsbeats/vim-blade.git'
 Bundle 'puppetlabs/puppet-syntax-vim.git'
 Bundle 'terryma/vim-multiple-cursors.git'
+Bundle 'hallison/vim-markdown.git'
+Bundle 'nextval'
+Bundle 'mattn/emmet-vim.git'
+
+" Snippets
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
+
+Bundle "markwu/vim-laravel4-snippets"
+autocmd FileType php set ft=php.laravel
 
 Bundle 'chilicuil/vim-sprunge'
 nnoremap <Leader>y :Sprunge<CR>
@@ -63,11 +88,6 @@ let g:ctrlp_custom_ignore = {
 nnoremap <c-b> :CtrlPBuffer<CR>
 nnoremap <c-t> :CtrlPBufTag<CR>
 
-" Bundle 'altercation/vim-colors-solarized.git'
-" silent! colorscheme solarized
-hi Folded cterm=None
-" hi SignColumn ctermbg=Black
-
 Bundle 'scrooloose/nerdtree.git'
 nnoremap <Leader>o :NERDTreeToggle<CR>
 
@@ -81,21 +101,12 @@ Bundle 'tomtom/tcomment_vim.git'
 nmap <Leader>cc gcc
 vmap <Leader>cc gc
 
-Bundle 'joonty/vim-phpqa.git'
-let g:phpqa_messdetector_autorun = 0
-let g:phpqa_messdetector_ruleset = "~/.vim/phpmd.xml"
-let g:phpqa_codesniffer_autorun = 0
-let g:phpqa_codesniffer_args = "--standard=PSR2"
-let g:phpqa_codecoverage_autorun = 0
-nnoremap <Leader>cs :Phpcs<CR>:lfirst<CR>
-nnoremap <Leader>md :Phpmd<CR>:lfirst<CR>
-
 Bundle 'sjl/gundo.vim'
 nnoremap <leader>u :GundoToggle<CR>
 
-Bundle 'phpfolding.vim'
-let g:DisableAutoPHPFolding = 1
-nnoremap zf :EnablePHPFolds<CR>zr
+" Bundle 'phpfolding.vim'
+" let g:DisableAutoPHPFolding = 1
+" nnoremap zf :EnablePHPFolds<CR>zr
 
 Bundle 'Align'
 vnoremap aa :Align =><CR>
@@ -105,17 +116,17 @@ Bundle 'kwbdi.vim'
 map <Leader>x <Plug>Kwbd
 
 Bundle 'scrooloose/syntastic.git'
+let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_phpcs_disable = 1
-let g:syntastic_mode_map = {'mode': 'passive'}
-set statusline+=%{SyntasticStatuslineFlag()}
+let g:syntastic_mode_map = {'mode': 'active', 'active_filetypes': ['php']}
+let g:syntastic_php_checkers=['php']
 
-" Bundle 'joonty/vdebug.git'
-"let g:vdebug_options = { 'break_on_open': 0, 'port': 9001 }
-" let g:vdebug_options = { 'break_on_open': 0, 'port': 9001, 'server': '192.168.1.23', 'debug_file': '/tmp/vdebug.log' }
-" nmap <Leader>bp <F10>
+Bundle 'joonty/vdebug.git'
+let g:vdebug_options = { 'break_on_open': 0, 'port': 9000 }
+nmap <Leader>bp <F10>
 
 filetype plugin indent on
 
@@ -189,6 +200,10 @@ vnoremap <Leader>rt :s/\t/    /g<CR>
 " PHP docblock generator
 au FileType php nmap <Leader>db :%!php ~/.vim/scripts/docblock.php<CR>
 
+nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 "------------------------------------------------------------------------------
 " Refactor PHP function
 "------------------------------------------------------------------------------
@@ -240,45 +255,3 @@ func! s:GoForError(partcmd)
          echohl None
      endtry
 endfunc
-
-"------------------------------------------------------------------------------
-" PWD status plugin
-" @see http://www.vim.org/scripts/script.php?script_id=3897
-"------------------------------------------------------------------------------
-
-if has('statusline')
-    if version >= 700
-        set laststatus=2
-        set statusline=
-        set statusline+=%#MyColor1#
-        set statusline+=%n                   " buffer number
-        set statusline+=%#MyColor2#
-        set statusline+=%{'/'.bufnr('$')}\   " total buffers
-        set statusline+=%#MyColor3#
-        set statusline+=%<%1.30{getcwd()}\ \ " pwd
-        set statusline+=%#MyColor1#
-        set statusline+=%<%1.50f             " filename
-        set statusline+=%#MyColor3#
-        set statusline+=\ %y%h%w             " filetype, help, example flags
-        set statusline+=%#MyColor4#
-        set statusline+=%r%m                 " read-only, modified flags
-        set statusline+=%#MyColor3#
-        set statusline+=%=\                  " indent right
-        set statusline+=%#MyColor1#
-        set statusline+=%l                   " line number
-        set statusline+=%#MyColor2#
-        set statusline+=/%{line('$')}        " total lines
-        set statusline+=%#MyColor2#
-        set statusline+=,
-        set statusline+=%#MyColor1#
-        set statusline+=%c%V                 " [virtual] column numberV
-        set statusline+=%#MyColor2#
-        set statusline+=\                    "
-        set statusline+=%#MyColor3#
-        set statusline+=%<%P                 " percent
-        highlight MyColor1 guifg=#fff guibg=#00a ctermfg=white   ctermbg=darkgray
-        highlight MyColor2 guifg=#aaa guibg=#007 ctermfg=gray    ctermbg=darkgray
-        highlight MyColor3 guifg=#7f7 guibg=#007 ctermfg=black   ctermbg=darkgray
-        highlight MyColor4 guifg=#ff0 guibg=#905 ctermfg=magenta ctermbg=darkgray
-    endif
-endif
